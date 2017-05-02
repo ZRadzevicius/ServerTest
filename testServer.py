@@ -1,6 +1,5 @@
 #! /usr/bin/python
 #Zilvinas Radzevicius
-#Change
 import sys
 import argparse
 import urllib2
