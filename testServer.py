@@ -1,6 +1,5 @@
 #! /usr/bin/python
 #Zilvinas Radzevicius
-#fifth change
 import sys
 import argparse
 import urllib2
@@ -22,7 +21,7 @@ try:
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 except socket.error:
     print "FAIL"
-    sys.exit(0)
+    sys.exit(1)
 
 try:
     #get the IP address of the host
@@ -30,27 +29,27 @@ try:
 except socket.gaierror:
     #cant resolve host
     print "FAIL" 
-    sys.exit(0)
+    sys.exit(1)
 
 try:
     #connecting to host with port specified
     s.connect((host_ip,port))
 except socket.timeout:
     print "FAIL"
-    sys.exit(0)
+    sys.exit(1)
 
 try:
     #Get content of the website
     website = urllib2.urlopen('http://' + url).read()
 except urllib2.URLError:
     print "FAIL"
-    sys.exit(0)
+    sys.exit(1)
 
 #checking if text exists in website's content
 matches = re.findall(text, website);
 if len(matches) == 0:
     print "FAIL"
-    sys.exit(0)
+    sys.exit(1)
 else:
     print "OK"
-    sys.exit(1)
+    sys.exit(0)
